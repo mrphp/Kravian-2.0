@@ -1,9 +1,9 @@
     <div class="headline"><center>
-        <span class="f16 c5">TravianT4 Installation Script</span>
+        <span class="f16 c5">Kravian 2.0 Installation Script</span>
     </center></div>
 
     <div><font color="red"><center>
-           Version: BETA 4
+           Version: 2.0
     </font></center></div>
     <br>
 
@@ -26,7 +26,7 @@
     </ul>
 
     <div class="lbox">
-        TravianX Team
+        This project is bieing developed by : <font color="red">Mr.php</font> 
     </div>
     <br>
 
@@ -35,7 +35,7 @@
         <button type="button" value="Upgrade level" class="build" onclick="window.location.href = '?s=1'; return false;">
 <div class="button-container"><div class="button-position"><div class="btl"><div class="btr"><div class="btc"></div></div></div>
 <div class="bml"><div class="bmr"><div class="bmc"></div></div></div><div class="bbl"><div class="bbr"><div class="bbc"></div></div></div>
-</div><div class="button-contents">Next</div></div></button>
+</div><div class="button-contents">Begain</div></div></button>
         </form>
     </div>
 
