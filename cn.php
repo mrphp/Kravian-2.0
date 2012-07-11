@@ -2,7 +2,7 @@
 #################################################################################
 ##              -= YOU MAY NOT REMOVE OR CHANGE THIS NOTICE =-                 ##
 ## --------------------------------------------------------------------------- ##
-##  Filename       dorf2.tpl                                                   ##
+##  Filename       cn.tpl                                                      ##
 ##  Developed by:  Mr.php                                                      ##
 ##  License:       Kravian 2.0 Project                                         ##
 ##  Copyright:     Kravian 2.0 (c) 2010-2011. All rights reserved.             ##
