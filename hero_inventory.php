@@ -1,4 +1,15 @@
-﻿<?php
+<?php
+#################################################################################
+##              -= YOU MAY NOT REMOVE OR CHANGE THIS NOTICE =-                 ##
+## --------------------------------------------------------------------------- ##
+##  Filename       dorf2.tpl                                                   ##
+##  Developed by:  Mr.php                                                      ##
+##  License:       Kravian 2.0 Project                                         ##
+##  Copyright:     Kravian 2.0 (c) 2010-2011. All rights reserved.             ##
+##                                                                             ##
+#################################################################################
+
+
 include("GameEngine/Village.php");
 include("GameEngine/Inventory.php");
 $start = $generator->pageLoadTimeStart();
@@ -392,7 +403,7 @@ include "Templates/Auction/alt.tpl";
 		if($hero['dead']==1){
 			$dis = ' disabled';
 			$deadTitle = "
-			<span class='itemNotMoveable'>قهرمان شما مرده است و یا در دهکده نیست، به این دلیل قادر به استفاده از این جنس نمی‌باشید.</span><br>";
+			<span class='itemNotMoveable'>Your Hero is not available</span><br>";
 		}else{
 			$dis = '';
 			$deadTitle = '';
