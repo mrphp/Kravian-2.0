@@ -1,4 +1,14 @@
-﻿<?php 
+<?php 
+#################################################################################
+##              -= YOU MAY NOT REMOVE OR CHANGE THIS NOTICE =-                 ##
+## --------------------------------------------------------------------------- ##
+##  Filename       dorf2.tpl                                                   ##
+##  Developed by:  Mr.php                                                      ##
+##  License:       Kravian 2.0 Project                                         ##
+##  Copyright:     Kravian 2.0 (c) 2010-2011. All rights reserved.             ##
+##                                                                             ##
+#################################################################################
+
 $hero = $database->getHeroData($session->uid);
 $herodetail = $database->HeroFace($session->uid);
 $tribe = $session->tribe;
@@ -8,6 +18,43 @@ $plevel = $hero['level']-1;
 $heroWrefC = $generator->getMapCheck($hero['wref']);
 if($tribe == 1){ $tp = 100; }else{ $tp = 80; }
 $rp = 3*SPEED*$hero['product'];
+   if($hero_info['unit'] == 1) {
+        	$name = "Legionnaire";
+        } else if($hero_info['unit'] == 2) {
+        	$name = "Praetorian";
+        } else if($hero_info['unit'] == 3) {
+        	$name = "Imperian";
+        } else if($hero_info['unit'] == 5) {
+        	$name = "Equites Imperatoris";
+        } else if($hero_info['unit'] == 6) {
+        	$name = "Equites Caesaris";
+        } else if($hero_info['unit'] == 11) {
+        	$name = "Clubswinger";
+        } else if($hero_info['unit'] == 12) {
+        	$name = "Spearman";
+        } else if($hero_info['unit'] == 13) {
+        	$name = "Axeman";
+        } else if($hero_info['unit'] == 15) {
+        	$name = "Paladin";
+        } else if($hero_info['unit'] == 16) {
+        	$name = "Teutonic Knight";
+        } else if($hero_info['unit'] == 21) {
+        	$name = "Phalanx";
+        } else if($hero_info['unit'] == 22) {
+        	$name = "Swordsman";
+        } else if($hero_info['unit'] == 24) {
+        	$name = "Theutates Thunder";
+        } else if($hero_info['unit'] == 25) {
+        	$name = "Druidrider";
+        } else if($hero_info['unit'] == 26) {
+        	$name = "Haeduan";
+        }
+		$wood = (${'h'.$hero_info['unit'].'_full'}[$hero_info['level']]['wood']);
+        $clay = (${'h'.$hero_info['unit'].'_full'}[$hero_info['level']]['clay']);
+        $iron = (${'h'.$hero_info['unit'].'_full'}[$hero_info['level']]['iron']);
+        $crop = (${'h'.$hero_info['unit'].'_full'}[$hero_info['level']]['crop']);
+        $training_time = $generator->getTimeFormat(round((${'h'.$hero_info['unit'].'_full'}[$hero_info['level']]['time']) / SPEED * $artefact_bonus2 / $artefact_bonus));
+        $training_time2 = time() + round((${'h'.$hero_info['unit'].'_full'}[$hero_info['level']]['time']) / SPEED * $artefact_bonus2 / $artefact_bonus);
 ob_start();
 ?>
 <div id="attributes"><div class="boxes boxesColor gray"><div class="boxes-tl"></div><div class="boxes-tr"></div><div class="boxes-tc"></div><div class="boxes-ml"></div><div class="boxes-mr"></div><div class="boxes-mc"></div><div class="boxes-bl"></div><div class="boxes-br"></div><div class="boxes-bc"></div><div class="boxes-contents">
@@ -156,7 +203,7 @@ if($hero['r3']!=0){echo $hero['r3']*10*SPEED;}else if($hero['r4']!=0){echo $hero
 				</div>
 			</div>
 <?php }else{ ?>
-<div class="attributesHeadline"> A hős újraélesztése ebben a faluban </div>
+<div class="attributesHeadline"> Revive The hero </div>
 <div class="clear"></div>
     <?php
     $vRes = ($village->awood+$village->aclay+$village->airon+$village->acrop);
@@ -164,12 +211,15 @@ if($hero['r3']!=0){echo $hero['r3']*10*SPEED;}else if($hero['r4']!=0){echo $hero
 $checkT = $database->getHeroTrain($hero['wref']);
 
 if(!$checkT){
-    if($village->awood < $tt2[$hero['level']]['wood'] || $village->aclay < $tt2[$hero['level']]['clay'] || $village->airon < $tt2[$hero['level']]['iron'] || $village->acrop < $tt2[$hero['level']]['crop']){
-    	echo '<span class="none">Nincs elég nyersanyag a hős újraélesztéséhez</span>';
+    if($village->awood > $tt2[$hero['level']]['wood'] || $village->aclay > $tt2[$hero['level']]['clay'] || $village->airon > $tt2[$hero['level']]['iron'] || $village->acrop > $tt2[$hero['level']]['crop']){
+		        echo "<span class=\"regeneratebtn\"><button type=\"submit\" value=\"Revive\" onclick=\"window.location.href = 'hero_inventory.php?r=1'; return false;\" name=\"save\" id=\"save\"><div class=\"button-container\"><div class=\"button-position\"><div class=\"btl\"><div class=\"btr\"><div class=\"btc\"></div></div></div><div class=\"bml\"><div class=\"bmr\"><div class=\"bmc\"></div></div></div><div class=\"bbl\"><div class=\"bbr\"><div class=\"bbc\"></div></div></div></div><div class=\"button-contents\">Revive</div></div></button></span>";
+
     }else{
-        echo "<span class=\"regeneratebtn\"><button type=\"submit\" value=\"Újraélesztés\" onclick=\"window.location.href = 'hero_inventory.php?r=1'; return false;\" name=\"save\" id=\"save\"><div class=\"button-container\"><div class=\"button-position\"><div class=\"btl\"><div class=\"btr\"><div class=\"btc\"></div></div></div><div class=\"bml\"><div class=\"bmr\"><div class=\"bmc\"></div></div></div><div class=\"bbl\"><div class=\"bbr\"><div class=\"bbc\"></div></div></div></div><div class=\"button-contents\">Újraélesztés</div></div></button></span>";
+    	echo '<span class="none">No enough resources</span>';
     }
-}else{
+}
+else
+{
 	echo "Hero will be ready in <span id='timer1'>".$generator->getTimeFormat($checkT['eachtime']-time())."</span>";
 }
     ?>
